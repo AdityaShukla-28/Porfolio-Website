@@ -2,12 +2,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
     min-height: 100vh;
-    background: linear-gradient(0deg, #78b9af 0%, #567784 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
     }
   
 nav{
@@ -34,13 +35,30 @@ ul{
     gap: 3rem;
 }
 
+.theme_toggle {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #FFC300;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.theme_toggle:hover {
+    color: #fff;
+}
+
 a{
     text-decoration: none;
     color: #FFC300;
     font-weight: 500;
     position: relative;
     padding: 5px 0;
-    transition: color,0.3sec,ease;
+    transition: color 0.3s ease;
 }
 
 a::after{
@@ -78,16 +96,287 @@ a:hover{
     border: 5px solid #b9a873 ;
     object-fit: cover;
     box-shadow: 0 6px 10px rgba(0,0 ,0, 0.50);
-     transition: transform 0.4 ease;
+     transition: transform 0.4s ease;
 }
 .profile img:hover{
-
-    box-shadow: 0 6px 10px rgba(0,0 ,0, 0.50);
     transform: scale(1.1);
     transition: transform 0.8s cubic-bezier(.2,.8,.2,1);
-     box-shadow: 0 10px 30px rgba(199, 131, 28, 0.5);
-     border-color: #b9a873;
+    box-shadow: 0 10px 30px rgba(199, 131, 28, 0.5);
+    border-color: #b9a873;
+}
 
-   
+.about_section, .skills_section, .experience_section, .projects_section, .contact_section {
+    padding: 4rem 10%;
+    text-align: center;
+    color: white;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
 
-} 
+.about_section.visible, .skills_section.visible, .experience_section.visible, .projects_section.visible, .contact_section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.about_section h2, .skills_section h2, .experience_section h2, .projects_section h2, .contact_section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.about_section p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.skills_container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.skill {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.skill_name {
+    font-weight: 500;
+}
+
+.progress_bar {
+    width: 60%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: #FFC300;
+    border-radius: 5px;
+    transition: width 1s ease;
+}
+
+.experience_section .timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline_item {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.timeline_item::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #FFC300;
+    transform: translateX(-50%);
+}
+
+.timeline_content {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    margin-left: 2rem;
+    position: relative;
+}
+
+.timeline_content::before {
+    content: '';
+    position: absolute;
+    left: -1rem;
+    top: 1rem;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid rgba(255, 255, 255, 0.1);
+}
+
+.projects_section .project {
+    margin: 2rem 0;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.project_link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #FFC300;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.project_link:hover {
+    color: #fff;
+}
+
+.contact_section form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.contact_section label {
+    margin-top: 1rem;
+    text-align: left;
+}
+
+.contact_section input, .contact_section textarea {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border: none;
+    border-radius: 5px;
+}
+
+.contact_section button {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background: #FFC300;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.back_to_top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: #FFC300;
+    color: #333;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.back_to_top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.footer_content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.social_links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social_links a {
+    color: white;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social_links a:hover {
+    color: #FFC300;
+}
+
+@media (max-width: 768px) {
+    .footer_content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+body.dark-mode {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: #e0e0e0;
+}
+
+body.dark-mode nav {
+    background: rgba(0, 0, 0, 0.5);
+    border: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .about_section, body.dark-mode .skills_section, body.dark-mode .experience_section, body.dark-mode .projects_section, body.dark-mode .contact_section {
+    color: #e0e0e0;
+}
+
+body.dark-mode .timeline_content {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .timeline_content::before {
+    border-right-color: rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .projects_section .project {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode footer {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero_section {
+        gap: 2rem;
+    }
+    ul {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero_section {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+    ul {
+        gap: 1rem;
+    }
+    nav {
+        width: 90%;
+    }
+    .skills_container {
+        width: 90%;
+    }
+    .skill {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    .progress_bar {
+        width: 100%;
+    }
+    .timeline_item::before {
+        left: 0;
+        transform: none;
+    }
+    .timeline_content {
+        margin-left: 1rem;
+    }
+    .timeline_content::before {
+        left: -0.5rem;
+    }
+}
